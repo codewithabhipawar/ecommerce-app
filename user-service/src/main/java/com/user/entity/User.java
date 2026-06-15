@@ -1,6 +1,6 @@
 package com.user.entity;
 
-import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.annotations.Table;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,25 +9,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Entity
+@jakarta.persistence.Table(name = "users")
 public class User {
 	
-	@Column(name = "id")
 	@Id
 	private String userId;
 	
-	@NotNull
 	@Column(name = "name", length = 20)
 	private String name;
 	
-	@NotNull
 	private String email;
 	
 	private String about;
