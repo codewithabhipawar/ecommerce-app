@@ -3,11 +3,14 @@ package com.user.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.user.entity.User;
@@ -20,33 +23,33 @@ public class UserController {
 	private UserServices service;
 	
 	@GetMapping("/users")
-	public List<User> getAllUsers()
+	public ResponseEntity<List<User>> getAllUsers()
 	{
-		return service.getAllUser();
+		return ResponseEntity.status(HttpStatus.FOUND).body(service.getAllUser());
 	}
 	
 	@GetMapping("/user/{userId}")
-	public User usersGetById(@PathVariable("userId") String userId)
+	public ResponseEntity<User> usersGetById(@PathVariable("userId") String userId)
 	{
-		return service.getById(userId);
+		return ResponseEntity.status(HttpStatus.FOUND).body(service.getById(userId));
 	}
 	
 	@PostMapping("/user")
-	public User saveUser(User user)
+	public ResponseEntity<User> saveUser(@RequestBody User user)
 	{
-		return service.createUser(user);
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.createUser(user));
 	}
 	
 	@PutMapping("/user/update")
-	public User userUpdate(User user)
+	public ResponseEntity<User> userUpdate(User user)
 	{
-		return service.updateUser(user);
+		return ResponseEntity.status(HttpStatus.OK).body(service.updateUser(user));
 	}
 	
 	@DeleteMapping("/user/{userId}")
-	public User deleteUser(@PathVariable("userId") String userId)
+	public ResponseEntity<User> deleteUser(@PathVariable("userId") String userId)
 	{
-		return service.deleteUser(userId);
+		return ResponseEntity.status(HttpStatus.FOUND).body(service.deleteUser(userId));
 	}
 
 }
