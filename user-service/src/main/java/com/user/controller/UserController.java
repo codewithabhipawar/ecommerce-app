@@ -25,13 +25,13 @@ public class UserController {
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers()
 	{
-		return ResponseEntity.status(HttpStatus.FOUND).body(service.getAllUser());
+		return ResponseEntity.ok(service.getAllUser());
 	}
 	
 	@GetMapping("/user/{userId}")
 	public ResponseEntity<User> usersGetById(@PathVariable("userId") String userId)
 	{
-		return ResponseEntity.status(HttpStatus.FOUND).body(service.getById(userId));
+		return ResponseEntity.ok(service.getById(userId));
 	}
 	
 	@PostMapping("/user")
