@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.user.entity.User;
+import com.user.exceptions.ResourceNotFoundException;
 import com.user.repository.UserRepository;
 
 @Service
@@ -19,9 +20,14 @@ public class UserServices {
 		return userRepo.findAll();
 	}
 	
-	public User getById(String userId)
+	public User createUser(User user)
 	{
-		return userRepo.findById(userId).get();
+		return userRepo.save(user);
+	}
+	
+	public User getById(String userId) throws ResourceNotFoundException
+	{
+		return userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException());
 	}
 	
 	public User updateUser(User user)
