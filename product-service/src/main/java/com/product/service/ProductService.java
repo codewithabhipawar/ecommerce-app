@@ -1,6 +1,7 @@
 package com.product.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,8 @@ public class ProductService {
 	//create product
 	public Product createProduct(Product product)
 	{
+		String productId = UUID.randomUUID().toString();
+		product.setProductId(productId);
 		return productRepository.save(product);
 	}
 	
