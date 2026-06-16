@@ -1,6 +1,7 @@
 package com.payment.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,8 @@ public class PaymentService {
 
 	// create payment
 	public Payment createPayment(Payment payment) {
+		String paymentId = UUID.randomUUID().toString();
+		payment.setPaymentId(paymentId);
 		return paymentRepository.save(payment);
 	}
 
