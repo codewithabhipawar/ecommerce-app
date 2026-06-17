@@ -23,5 +23,4 @@ public class Product {
 	private double productPrice;
 	private String color;
 	private int rating;
-
 }
