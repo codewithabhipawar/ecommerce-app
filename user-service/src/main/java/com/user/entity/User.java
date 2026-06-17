@@ -38,6 +38,6 @@ public class User {
 	private Cart cart;
 	
 	@Transient
-	private List<Order> orders;
+	private Order orders;
 
 }
