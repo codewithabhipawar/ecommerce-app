@@ -9,8 +9,6 @@ import com.order.entity.Order;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer>{
-	
-	Order findByOrder_number(int order_number);
 	Order findByCartId(String cartId);
 	List<Order> findByUserId(String userId);
 
