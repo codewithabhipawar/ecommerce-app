@@ -15,7 +15,7 @@ spring:
     hibernate:
       ddl-auto: update
   application:
-    name: product-service
+    name: PRODUCT-SERVICE
 
 eureka:
   client:
