@@ -1,9 +1,12 @@
 package com.order.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "orders")
 public class Order {
 	
 	@Id
@@ -28,5 +32,11 @@ public class Order {
 	private double shipping_amount;
 	private double total_amount;
 	private String payment_status;
+	
+	@Transient
+	private List<Product> products;
+	
+	@Transient
+	private Payment payment;
 
 }
