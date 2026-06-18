@@ -15,6 +15,11 @@ public class OrderService {
 	@Autowired
 	private OrderRepository orderRepository;
 	
+	public List<Order> getOrders()
+	{
+		return orderRepository.findAll();
+	}
+	
 	
 	//single order by id
 	public Order getSingleOrder(int orderId)throws ResourceNotFoundException
