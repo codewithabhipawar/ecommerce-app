@@ -38,6 +38,12 @@ public class OrderController {
 		return ResponseEntity.ok("user deleted successfully");
 	}
 	
+	@GetMapping
+	public ResponseEntity<List<Order>> getListOfOrders()
+	{
+		return ResponseEntity.ok(orderService.getOrders());
+	}
+	
 	@GetMapping("/{orderId}")
 	public ResponseEntity<Order> getOrderByOrderId(@PathVariable("orderId") int orderId)
 	{
