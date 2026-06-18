@@ -1,18 +1,18 @@
 package com.user.services;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.user.entity.Product;
+import com.user.entity.Cart;
+import com.user.entity.Order;
 import com.user.entity.User;
 import com.user.exceptions.ResourceNotFoundException;
-import com.user.externalservices.ProductService;
+import com.user.externalservice.CartService;
+import com.user.externalservice.OrderService;
 import com.user.repository.UserRepository;
 
 @Service
@@ -22,7 +22,10 @@ public class UserServices {
 	private UserRepository userRepo;
 	
 	@Autowired
-	private ProductService productService;
+	private CartService cartService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -42,16 +45,11 @@ public class UserServices {
 	public User getById(String userId) throws ResourceNotFoundException
 	{
 		User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException());
-		//
+//		Cart cart = cartService.getCartByUserId(userId);
+		List<Order> orders = orderService.getOrder(userId);
 		
-//		Order order = restTemplate.getForObject("", Order.class);
-//		user.setOrders(order);
-//		Product[] products = restTemplate.getForObject("http://localhost:8082/product/users/"+user.getUserId(), Product[].class);
-//		List<Product> collect = Arrays.stream(products).collect(Collectors.toList());
-//		user.setProducts(collect);
-		
-		List<Product> products = productService.getProducts(userId);
-		user.setProducts(products);
+//		user.setCart(cart);
+		user.setOrders(orders);
 		return user;
 	}
 	
