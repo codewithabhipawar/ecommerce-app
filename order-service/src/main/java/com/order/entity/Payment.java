@@ -19,5 +19,4 @@ public class Payment {
 	private String userId;
 	private double amount;
 	private String paymentStatus;
-
 }
