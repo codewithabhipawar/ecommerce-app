@@ -15,7 +15,7 @@ spring:
     hibernate:
       ddl-auto: update
   application:
-    name: cart-service
+    name: CART-SERVICE
 
 eureka:
   client:
